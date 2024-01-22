@@ -8,6 +8,10 @@
         mc:Ignorable="d"
         d:DataContext="{d:DesignInstance viewModels:MainViewModel}"
         Title="CSVHandler" Height="400" Width="600">
+    <Window.CommandBindings>
+        <!--<CommandBinding Command="{Binding Path=SaveToDbCommand}" Executed="{Binding SaveToDbCommand_Executed}"/>-->
+        <CommandBinding Command="local:WindowCommands.SaveToDbCommand" Executed="CommandBinding_Executed"/>
+    </Window.CommandBindings>
     <Grid HorizontalAlignment="Center" Width="480">
         <Grid.RowDefinitions>
             <RowDefinition/>
@@ -38,19 +42,19 @@
                 Content="Save to database" 
                 Margin="0,0,10,0"
                 FontSize="16" Height="36" Width="139" 
-                Click="SaveToDBButton_Click"/>
+                Command="local:WindowCommands.SaveToDbCommand"/>
             <Button 
                 x:Name="ExportToXMLButton" 
                 Content="Export to XML" 
                 Margin="0,0,10,0"
                 FontSize="16" Height="36" Width="139" 
-                Click="ExportToXMLButton_Click"/>
+                />
             <Button 
                 x:Name="ExportToExcelButton" 
                 Content="Export to Excel" 
                 Margin="0,0,10,0"
                 FontSize="16" Height="36" Width="139" 
-                Click="ExportToExcelButton_Click"/>
+                />
         </StackPanel>
     </Grid>
 </Window>

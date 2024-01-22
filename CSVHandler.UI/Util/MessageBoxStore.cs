@@ -51,5 +51,21 @@ namespace CSVHandler.UI.Util
                 MessageBoxImage.Warning
             );
         }
+
+        /// <summary>
+        /// Shows MessageBox for warning and provides its result.
+        /// </summary>
+        /// <param name="message">Message for MessageBox.</param>
+        /// <returns>Result of MessageBox.</returns>
+        public static MessageBoxResult Information(string message)
+        {
+            return MessageBox.Show
+            (
+                message,
+                "Information",
+                MessageBoxButton.OKCancel,
+                MessageBoxImage.Information
+            );
+        }
     }
 }

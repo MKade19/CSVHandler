@@ -1,5 +1,6 @@
 ﻿using CSVHandler.UI.Data.Abstract;
 using CSVHandler.UI.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace CSVHandler.UI.Data
 {
@@ -13,13 +14,19 @@ namespace CSVHandler.UI.Data
         }
         public async Task SaveManyAsync(IEnumerable<Person> people)
         {
-            await Db.People.AddRangeAsync(people);
-            await Db.SaveChangesAsync();
+            using(ApplicationContext db = Db)
+            {
+                await db.People.AddRangeAsync(people);
+                await db.SaveChangesAsync();
+            }
         }
 
-        public IEnumerable<Person> GetAll()
+        public async Task<IEnumerable<Person>> GetAllAsync()
         {
-            return Db.People.ToList();
+            using (ApplicationContext db = Db)
+            {
+                return await db.People.ToListAsync();
+            }
         }
     }
 }

@@ -7,13 +7,13 @@ namespace CSVHandler.UI.Services
 {
     public class XmlService : IXmlService
     {
-        public void SaveToFile(List<Person> people, string filepath) //REMOVE DEFAULT VALUE!!!!!!
+        public async Task SavePeopleToFile(List<Person> people, string filepath)
         {
             XmlSerializer xmlSerializer = new XmlSerializer(typeof(List<Person>));
 
             using (FileStream fs = new FileStream(filepath, FileMode.OpenOrCreate))
             {
-                xmlSerializer.Serialize(fs, people);
+                await Task.Run(() => { xmlSerializer.Serialize(fs, people); });
             }
         }
     }

@@ -50,3 +50,4 @@ D:\My_documents\practice\c#\CSVHandler\CSVHandler\CSVHandler.UI\bin\Debug\net6.0
 D:\My_documents\practice\c#\CSVHandler\CSVHandler\CSVHandler.UI\bin\Debug\net6.0-windows\runtimes\win-x86\native\Microsoft.Data.SqlClient.SNI.dll
 D:\My_documents\practice\c#\CSVHandler\CSVHandler\CSVHandler.UI\bin\Debug\net6.0-windows\runtimes\win\lib\netstandard2.0\System.Runtime.Caching.dll
 D:\My_documents\practice\c#\CSVHandler\CSVHandler\CSVHandler.UI\bin\Debug\net6.0-windows\FileHelpers.dll
+D:\My_documents\practice\c#\CSVHandler\CSVHandler\CSVHandler.UI\obj\Debug\net6.0-windows\CSVHandler.UI.sourcelink.json

@@ -37,9 +37,11 @@ namespace CSVHandler.UI
         private void ConfigureServices(ServiceCollection services)
         {
             services.AddSingleton<MainWindow>();
+            services.AddSingleton<WindowCommands>();
             services.AddDbContext<ApplicationContext>();
             services.AddTransient<ICSVParserService, CSVParserService>();
             services.AddTransient<IXmlService, XmlService>();
+            services.AddTransient<IFileService, FileService>();
             services.AddTransient<IPeopleRepository, PeopleRepository>();
         }
 

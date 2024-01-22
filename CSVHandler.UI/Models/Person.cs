@@ -25,14 +25,16 @@ namespace CSVHandler.UI.Models
 
         public string Country { get; set; } = string.Empty;
 
-        //public Person(DateTime date, string firstName, string middleName, string lastName, string town, string country)
-        //{
-        //    Date = date;
-        //    FirstName = firstName;
-        //    MiddleName = middleName;
-        //    LastName = lastName;
-        //    Town = town;
-        //    Country = country;
-        //}
+        public Person(DateTime date, string firstName, string middleName, string lastName, string town, string country)
+        {
+            PublishDate = date;
+            FirstName = firstName;
+            MiddleName = middleName;
+            LastName = lastName;
+            Town = town;
+            Country = country;
+        }
+
+        public Person() { }
     }
 }

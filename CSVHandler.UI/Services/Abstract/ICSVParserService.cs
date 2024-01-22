@@ -4,6 +4,6 @@ namespace CSVHandler.UI.Services.Abstract
 {
     public interface ICSVParserService
     {
-        public IEnumerable<Person> ParseCSV(string csvFileName);
+        public Task<IEnumerable<Person>> ParsePeopleCSV(string csvFileName);
     }
 }
