@@ -5,7 +5,7 @@ namespace CSVHandler.UI.Services
 {
     public class FileService : IFileService
     {
-        private const int LinesLimit = 1000;
+        private const int RecordsLimit = 1000;
 
         public async IAsyncEnumerable<IEnumerable<string>> RestoreChunkAsync(string filePath)
         {
@@ -15,7 +15,7 @@ namespace CSVHandler.UI.Services
                 {
                     List<string> content = new List<string>();
 
-                    for (int i = 0; i < LinesLimit; i++)
+                    for (int i = 0; i < RecordsLimit; i++)
                     {
                         string? line = await sr.ReadLineAsync();
 

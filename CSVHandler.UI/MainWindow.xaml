@@ -18,51 +18,72 @@
             <RowDefinition/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <TextBlock Text="Main page" HorizontalAlignment="Center" FontSize="20" VerticalAlignment="Center" FontWeight="Bold"/>
-        <StackPanel Margin="0,5,0,5" Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center" Width="480">
-            <Label Target="{Binding ElementName=InputFileBox}" Content="Select input file" Margin="0,0,10,0" Height="37" FontSize="16"/>
-            <TextBox 
-                x:Name="InputFileBox" 
-                Margin="0,0,10,0" 
-                Width="255" 
-                Height="36" 
-                FontSize="18"
-                IsReadOnly="True"
-                Text="{Binding InputFileName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-            <Button 
-                x:Name="BrowseInputFileButton"
-                Content="Browse" 
-                FontSize="16" Height="36" Width="79" 
-                Click="BrowseInputFileButton_Click"
-                Margin="0,0,10,0"/>
+        <TextBlock Text="Main page" HorizontalAlignment="Center" FontSize="24" VerticalAlignment="Center" FontWeight="Bold"/>
+        <StackPanel Margin="15,0,15,0" Grid.Row="1" Width="480" VerticalAlignment="Center" Height="131">
+            <StackPanel Margin="0,20,0,0" Orientation="Horizontal" HorizontalAlignment="Center">
+                <Label Target="{Binding ElementName=InputFileBox}" Content="Select input file" Margin="0,0,10,0" Height="37" FontSize="16"/>
+                <TextBox 
+                    x:Name="InputFileBox" 
+                    Margin="0,0,10,0" 
+                    Width="255" 
+                    Height="36" 
+                    FontSize="18"
+                    IsReadOnly="True"
+                    Text="{Binding InputFileName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+            </StackPanel>
+            <StackPanel Margin="0,20,0,0" Orientation="Horizontal" HorizontalAlignment="Center">
+                <Button 
+                    x:Name="BrowseInputFileButton"
+                    Content="Browse" 
+                    FontSize="16" Height="36" Width="79" 
+                    Command="{Binding ShowFileDataCommand}"
+                    Margin="0,0,10,0"/>
+                <ProgressBar Minimum="0" Maximum="50" x:Name="ShowFileDataStatus" Visibility="Collapsed" Width="210" Height="20" IsIndeterminate="True"/>
+            </StackPanel>
         </StackPanel>
-        <StackPanel Margin="5,5,5,5" Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center">
-            <Button 
-                x:Name="SaveToDBButton" 
-                Content="Save to database" 
-                Margin="0,0,10,0"
-                FontSize="16" Height="36" Width="139" 
-                Command="{Binding SaveToDbCommand}"/>
-            <Button 
-                x:Name="ExportToXMLButton" 
-                Content="Export to XML" 
-                Margin="0,0,10,0"
-                FontSize="16" Height="36" Width="139" />
-            <Button 
-                x:Name="ExportToExcelButton" 
-                Content="Export to Excel" 
-                Margin="0,0,10,0"
-                FontSize="16" Height="36" Width="139"/>
+        <StackPanel Margin="0,5,0,5" Grid.Row="2" HorizontalAlignment="Center" Width="400">
+            <StackPanel Orientation="Horizontal" Margin="0,20,0,0" HorizontalAlignment="Center">
+                <Button 
+                    x:Name="SaveToDBButton" 
+                    Content="Save to database" 
+                    Margin="0,0,20,0"
+                    FontSize="16" Height="36" Width="139" 
+                    Command="{Binding SaveToDbCommand}"/>
+                <ProgressBar Minimum="0" Maximum="50" x:Name="SaveToDbStatus" Visibility="Collapsed"  Width="210" Height="20" IsIndeterminate="True"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="0,20,0,0" HorizontalAlignment="Center">
+                <Button 
+                    x:Name="ExportToXMLButton" 
+                    Content="Export to XML" 
+                    Margin="0,0,20,0"
+                    FontSize="16" Height="36" Width="139"/>
+                <ProgressBar Minimum="0" Maximum="100" x:Name="ExportToXmlStatus" Visibility="Collapsed" Width="210" Height="20" IsIndeterminate="True"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="0,20,0,0" HorizontalAlignment="Center">
+                <Button 
+                    x:Name="ExportToExcelButton" 
+                    Content="Export to Excel" 
+                    Margin="0,0,20,0"
+                    FontSize="16" Height="36" Width="139"/>
+                <ProgressBar Minimum="0" Maximum="100" x:Name="ExportToExcelStatus" Visibility="Collapsed" Width="210" Height="20" IsIndeterminate="True"/>
+            </StackPanel>
         </StackPanel>
-        <TextBlock Text="People from file" Grid.Column="1" HorizontalAlignment="Center" FontSize="16" VerticalAlignment="Center" FontWeight="Bold" Height="26" RenderTransformOrigin="0.511,-0.797"/>
-        <DataGrid Grid.Column="1" Grid.Row="1" Grid.RowSpan="2" FontSize="16" Margin="0,0,10,10">
+        <TextBlock Text="People to save" Grid.Column="1" HorizontalAlignment="Center" FontSize="18" VerticalAlignment="Center" FontWeight="Bold" Height="26" RenderTransformOrigin="0.511,-0.797"/>
+        <DataGrid 
+            AutoGenerateColumns="False"
+            Grid.Column="1" 
+            Grid.Row="1" 
+            Grid.RowSpan="2" 
+            IsReadOnly="True"
+            ItemsSource="{Binding PeopleToSave}"
+            FontSize="16" Margin="0,0,10,10">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Publish date"/>
-                <DataGridTextColumn Header="Firstname"/>
-                <DataGridTextColumn Header="Middlename"/>
-                <DataGridTextColumn Header="Lastname"/>
-                <DataGridTextColumn/>
-                <DataGridTextColumn/>
+                <DataGridTextColumn Header="Publish date" Binding="{Binding PublishDate, StringFormat=dd.MM.yyyy}"/>
+                <DataGridTextColumn Header="Firstname" Binding="{Binding FirstName}"/>
+                <DataGridTextColumn Header="Middlename" Binding="{Binding MiddleName}"/>
+                <DataGridTextColumn Header="Lastname" Binding="{Binding LastName}"/>
+                <DataGridTextColumn Header="Town" Binding="{Binding Town}"/>
+                <DataGridTextColumn Header="Country" Binding="{Binding Country}"/>
             </DataGrid.Columns>
         </DataGrid>
 
