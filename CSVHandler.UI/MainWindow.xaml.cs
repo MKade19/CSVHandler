@@ -12,7 +12,6 @@ namespace CSVHandler.UI
     /// </summary>
     public partial class MainWindow : Window
     {
-
         public MainWindow(ICSVParserService parserService, IPeopleRepository peopleRepository, IXmlService xmlService)
         {
             InitializeComponent();
@@ -34,11 +33,6 @@ namespace CSVHandler.UI
         private void ExportToExcelButton_Click(object sender, RoutedEventArgs e)
         {
             MessageBoxStore.Warning("iiiii");
-        }
-
-        private async void CommandBinding_Executed(object sender, System.Windows.Input.ExecutedRoutedEventArgs e)
-        {
-            await ((MainViewModel)DataContext).SaveToDbCommand_Executed();
         }
     }
 }

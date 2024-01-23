@@ -5,28 +5,29 @@ namespace CSVHandler.UI.Services
 {
     public class FileService : IFileService
     {
-        public async Task<string> RestoreAsync(string filePath)
+        private const int LinesLimit = 1000;
+
+        public async IAsyncEnumerable<IEnumerable<string>> RestoreChunkAsync(string filePath)
         {
-            StreamReader? sr = null;
-            try
+            using  (StreamReader sr = new StreamReader(filePath))
             {
-                sr = new StreamReader(filePath);
-                string content = (await sr.ReadToEndAsync()).Trim();
-                return content;
-            }
-            catch (FileNotFoundException)
-            {
-                return String.Empty;
-            }
-            catch (Exception e)
-            {
-                return String.Empty;
-            }
-            finally
-            {
-                if (sr is not null)
+                while (!sr.EndOfStream)
                 {
-                    sr.Close();
+                    List<string> content = new List<string>();
+
+                    for (int i = 0; i < LinesLimit; i++)
+                    {
+                        string? line = await sr.ReadLineAsync();
+
+                        if (line == null)
+                        {
+                            break;
+                        }
+
+                        content.Add(line);
+                    }
+
+                    yield return content;
                 }
             }
         }

@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("CSVHandler.UI")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1e93f4d65ad65efb7af1eaf3a1cdcb2325e503df")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+8a95470a2f6d684f991da7b0309d83cb1aad0c7f")]
 [assembly: System.Reflection.AssemblyProductAttribute("CSVHandler.UI")]
 [assembly: System.Reflection.AssemblyTitleAttribute("CSVHandler.UI")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -12,7 +12,7 @@ namespace CSVHandler.UI.ViewModels
         private ICSVParserService ParserService { get; }
         private IPeopleRepository PeopleRepository { get; }
         private IXmlService XmlService { get; }
-        public RoutedCommand SaveToDbCommand { get; }
+        public DelegateCommand SaveToDbCommand { get; }
         public RoutedCommand ExportToXmlCommand { get; }
         public RoutedCommand ExportToExcelCommand { get; }
 
@@ -21,7 +21,7 @@ namespace CSVHandler.UI.ViewModels
             ParserService = parserService;
             PeopleRepository = peopleRepository;
             XmlService = xmlService;
-            SaveToDbCommand = new RoutedCommand(nameof(SaveToDbCommand), typeof(MainWindow));
+            SaveToDbCommand = new DelegateCommand(SaveToDbCommand_Executed);
             ExportToXmlCommand = new RoutedCommand(nameof(ExportToXmlCommand), typeof(MainWindow));
             ExportToExcelCommand = new RoutedCommand(nameof(ExportToExcelCommand), typeof(MainWindow));
         }
@@ -38,17 +38,19 @@ namespace CSVHandler.UI.ViewModels
             }
         }
 
-        //public async void SaveToDbCommand_Executed(object sender, RoutedEventArgs e)
-        public async Task SaveToDbCommand_Executed()
+        public async void SaveToDbCommand_Executed(object sender)
         {
             if (string.IsNullOrEmpty(InputFileName))
-            {
+            { 
                 MessageBoxStore.Warning("Choose the existing file!");
                 return;
             }
 
-            List<Person> people = new List<Person>(await ParserService.ParsePeopleCSV(InputFileName));
-            await PeopleRepository.SaveManyAsync(people);
+            await foreach(var peopleChunk in ParserService.ParsePeopleCSV(InputFileName))
+            {
+                List<Person> people = new List<Person>(peopleChunk);
+                await PeopleRepository.SaveManyAsync(people);
+            }
         }
 
         public async void ExportToXmlCommand_Executed(object sender, RoutedEventArgs e)

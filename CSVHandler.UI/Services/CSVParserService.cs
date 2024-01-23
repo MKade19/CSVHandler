@@ -12,19 +12,21 @@ namespace CSVHandler.UI.Services
             FileService = fileService;
         }
 
-        public async Task<IEnumerable<Person>> ParsePeopleCSV(string csvFilePath)
+        public async IAsyncEnumerable<IEnumerable<Person>> ParsePeopleCSV(string csvFilePath)
         {
-            List<Person> people = new List<Person>();
-            string fileContent = await FileService.RestoreAsync(csvFilePath);
-
-            foreach (string line in fileContent.Split("\r\n"))
+            await foreach (var dataChunk in FileService.RestoreChunkAsync(csvFilePath))
             {
-                string[] values = line.Split(';');
-                DateTime publishDate = DateTime.Parse(values[0]);
-                people.Add(new Person(publishDate, values[1], values[2], values[3], values[4], values[5]));
-            }
+                List<Person> people = new List<Person>();
 
-            return people;
+                foreach (string personData in dataChunk)
+                {
+                    string[] values = personData.Split(';');
+                    DateTime publishDate = DateTime.Parse(values[0]);
+                    people.Add(new Person(publishDate, values[1], values[2], values[3], values[4], values[5]));
+                }
+
+                yield return people;
+            }
         }
     }
 }

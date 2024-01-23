@@ -9,9 +9,12 @@ namespace CSVHandler.UI.Data
 
         public DbSet<Person> People { get; set; } = null!;
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            optionsBuilder.UseSqlServer(CONNECTION_STRING);
-        }
+        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        //{
+        //    optionsBuilder.UseSqlServer(CONNECTION_STRING);
+        //}
+
+        public ApplicationContext(DbContextOptions<ApplicationContext> options) : base(options)
+        { }
     }
 }

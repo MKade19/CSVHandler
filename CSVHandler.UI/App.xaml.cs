@@ -8,6 +8,7 @@ using CSVHandler.UI.Services.Abstract;
 using CSVHandler.UI.Services;
 using CSVHandler.UI.Models;
 using CSVHandler.UI.Data.Abstract;
+using Microsoft.EntityFrameworkCore;
 
 namespace CSVHandler.UI
 {
@@ -38,7 +39,11 @@ namespace CSVHandler.UI
         {
             services.AddSingleton<MainWindow>();
             services.AddSingleton<WindowCommands>();
-            services.AddDbContext<ApplicationContext>();
+            //services.AddDbContext<ApplicationContext>();
+            services.AddDbContextPool<ApplicationContext>(options => 
+            {
+                options.UseSqlServer("Server=.\\MKMSSQLSERVER;Database=PeopleDB;Trusted_Connection=True;TrustServerCertificate=True;");
+            });
             services.AddTransient<ICSVParserService, CSVParserService>();
             services.AddTransient<IXmlService, XmlService>();
             services.AddTransient<IFileService, FileService>();

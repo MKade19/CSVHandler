@@ -2,6 +2,6 @@
 {
     public interface IFileService
     {
-        public Task<string> RestoreAsync(string filePath);
+        public IAsyncEnumerable<IEnumerable<string>> RestoreChunkAsync(string filePath);
     }
 }

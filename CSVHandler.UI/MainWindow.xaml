@@ -7,14 +7,14 @@
         xmlns:local="clr-namespace:CSVHandler.UI"
         mc:Ignorable="d"
         d:DataContext="{d:DesignInstance viewModels:MainViewModel}"
-        Title="CSVHandler" Height="400" Width="600">
-    <Window.CommandBindings>
-        <!--<CommandBinding Command="{Binding Path=SaveToDbCommand}" Executed="{Binding SaveToDbCommand_Executed}"/>-->
-        <CommandBinding Command="local:WindowCommands.SaveToDbCommand" Executed="CommandBinding_Executed"/>
-    </Window.CommandBindings>
-    <Grid HorizontalAlignment="Center" Width="480">
+        Title="CSVHandler" Height="534" Width="1030">
+    <Grid HorizontalAlignment="Center" Width="1020">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition/>
+            <RowDefinition Height="0.5*"/>
             <RowDefinition/>
             <RowDefinition/>
         </Grid.RowDefinitions>
@@ -42,19 +42,29 @@
                 Content="Save to database" 
                 Margin="0,0,10,0"
                 FontSize="16" Height="36" Width="139" 
-                Command="local:WindowCommands.SaveToDbCommand"/>
+                Command="{Binding SaveToDbCommand}"/>
             <Button 
                 x:Name="ExportToXMLButton" 
                 Content="Export to XML" 
                 Margin="0,0,10,0"
-                FontSize="16" Height="36" Width="139" 
-                />
+                FontSize="16" Height="36" Width="139" />
             <Button 
                 x:Name="ExportToExcelButton" 
                 Content="Export to Excel" 
                 Margin="0,0,10,0"
-                FontSize="16" Height="36" Width="139" 
-                />
+                FontSize="16" Height="36" Width="139"/>
         </StackPanel>
+        <TextBlock Text="People from file" Grid.Column="1" HorizontalAlignment="Center" FontSize="16" VerticalAlignment="Center" FontWeight="Bold" Height="26" RenderTransformOrigin="0.511,-0.797"/>
+        <DataGrid Grid.Column="1" Grid.Row="1" Grid.RowSpan="2" FontSize="16" Margin="0,0,10,10">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Publish date"/>
+                <DataGridTextColumn Header="Firstname"/>
+                <DataGridTextColumn Header="Middlename"/>
+                <DataGridTextColumn Header="Lastname"/>
+                <DataGridTextColumn/>
+                <DataGridTextColumn/>
+            </DataGrid.Columns>
+        </DataGrid>
+
     </Grid>
 </Window>
