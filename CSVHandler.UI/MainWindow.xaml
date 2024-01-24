@@ -7,15 +7,15 @@
         xmlns:local="clr-namespace:CSVHandler.UI"
         mc:Ignorable="d"
         d:DataContext="{d:DesignInstance viewModels:MainViewModel}"
-        Title="CSVHandler" Height="534" Width="1030">
-    <Grid HorizontalAlignment="Center" Width="1020">
+        Title="CSVHandler" Height="550" Width="1047">
+    <Grid HorizontalAlignment="Center" Width="1026">
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="0.5*"/>
-            <RowDefinition/>
+            <RowDefinition Height="0.4*"/>
+            <RowDefinition Height="0.7*"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
         <TextBlock Text="Main page" HorizontalAlignment="Center" FontSize="24" VerticalAlignment="Center" FontWeight="Bold"/>
@@ -38,10 +38,13 @@
                     FontSize="16" Height="36" Width="79" 
                     Command="{Binding ShowFileDataCommand}"
                     Margin="0,0,10,0"/>
-                <ProgressBar Minimum="0" Maximum="50" x:Name="ShowFileDataStatus" Visibility="Collapsed" Width="210" Height="20" IsIndeterminate="True"/>
+                <Grid Margin="20" x:Name="ShowFileDataStatus" Visibility="Collapsed">
+                    <ProgressBar Minimum="0" Maximum="50" Width="210" Height="20" IsIndeterminate="True"/>
+                    <TextBlock Text="Parsing csv..." HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="14" />
+                </Grid>
             </StackPanel>
         </StackPanel>
-        <StackPanel Margin="0,5,0,5" Grid.Row="2" HorizontalAlignment="Center" Width="400">
+        <StackPanel Margin="0,5,0,5" Grid.Row="2" HorizontalAlignment="Center" Width="432">
             <StackPanel Orientation="Horizontal" Margin="0,20,0,0" HorizontalAlignment="Center">
                 <Button 
                     x:Name="SaveToDBButton" 
@@ -49,7 +52,10 @@
                     Margin="0,0,20,0"
                     FontSize="16" Height="36" Width="139" 
                     Command="{Binding SaveToDbCommand}"/>
-                <ProgressBar Minimum="0" Maximum="50" x:Name="SaveToDbStatus" Visibility="Collapsed"  Width="210" Height="20" IsIndeterminate="True"/>
+                <Grid Margin="20" x:Name="SaveToDbStatus" Visibility="Collapsed">
+                    <ProgressBar Minimum="0" Maximum="50" Width="210" Height="20" IsIndeterminate="True"/>
+                    <TextBlock Text="Saving to DB..." HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="14" />
+                </Grid>
             </StackPanel>
             <StackPanel Orientation="Horizontal" Margin="0,20,0,0" HorizontalAlignment="Center">
                 <Button 
@@ -57,7 +63,10 @@
                     Content="Export to XML" 
                     Margin="0,0,20,0"
                     FontSize="16" Height="36" Width="139"/>
-                <ProgressBar Minimum="0" Maximum="100" x:Name="ExportToXmlStatus" Visibility="Collapsed" Width="210" Height="20" IsIndeterminate="True"/>
+                <Grid Margin="20" x:Name="ExportToXmlStatus" Visibility="Collapsed">
+                    <ProgressBar Minimum="0" Maximum="100" Width="210" Height="20" IsIndeterminate="True"/>
+                    <TextBlock Text="Exporting to XML..." HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="14" />
+                </Grid>
             </StackPanel>
             <StackPanel Orientation="Horizontal" Margin="0,20,0,0" HorizontalAlignment="Center">
                 <Button 
@@ -65,7 +74,11 @@
                     Content="Export to Excel" 
                     Margin="0,0,20,0"
                     FontSize="16" Height="36" Width="139"/>
-                <ProgressBar Minimum="0" Maximum="100" x:Name="ExportToExcelStatus" Visibility="Collapsed" Width="210" Height="20" IsIndeterminate="True"/>
+                <Grid Margin="20" x:Name="ExportToExcelStatus" Visibility="Collapsed">
+                    <ProgressBar Minimum="0" Maximum="100" Width="210" Height="20" IsIndeterminate="True"/>
+                    <TextBlock Text="Exporting to excel..." HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="14" />
+                </Grid>
+                
             </StackPanel>
         </StackPanel>
         <TextBlock Text="People to save" Grid.Column="1" HorizontalAlignment="Center" FontSize="18" VerticalAlignment="Center" FontWeight="Bold" Height="26" RenderTransformOrigin="0.511,-0.797"/>
@@ -76,7 +89,7 @@
             Grid.RowSpan="2" 
             IsReadOnly="True"
             ItemsSource="{Binding PeopleToSave}"
-            FontSize="16" Margin="0,0,10,10">
+            FontSize="16" Margin="0,0,0,10" HorizontalAlignment="Center" Width="503">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Publish date" Binding="{Binding PublishDate, StringFormat=dd.MM.yyyy}"/>
                 <DataGridTextColumn Header="Firstname" Binding="{Binding FirstName}"/>

@@ -15,30 +15,36 @@ namespace CSVHandler.UI
         {
             InitializeComponent();
             DataContext = new MainViewModel(parserService, peopleRepository, xmlService);
-            EventAggregator.Instance.SaveToDbStarted += Instance_SaveToDbStarted;
-            EventAggregator.Instance.SaveToDbEnded += Instance_SaveToDbEnded;
-            EventAggregator.Instance.ShowFileDataStarted += Instance_ShowFileDataStarted;
-            EventAggregator.Instance.ShowFileDataEnded += Instance_ShowFileDataEnded;
+            EventAggregator.Instance.SaveToDbStarted += EventAggregator_SaveToDbStarted;
+            EventAggregator.Instance.SaveToDbEnded += EventAggregator_SaveToDbEnded;
+            EventAggregator.Instance.ShowFileDataStarted += EventAggregator_ShowFileDataStarted;
+            EventAggregator.Instance.ShowFileDataEnded += EventAggregator_ShowFileDataEnded;
         }
 
-        private void Instance_ShowFileDataEnded(object? sender, EventArgs e)
-        {
-            ShowFileDataStatus.Visibility = Visibility.Collapsed;
-        }
-
-        private void Instance_ShowFileDataStarted(object? sender, EventArgs e)
+        private void EventAggregator_ShowFileDataStarted(object? sender, EventArgs e)
         {
             ShowFileDataStatus.Visibility = Visibility.Visible;
+            BrowseInputFileButton.IsEnabled = false;
         }
 
-        private void Instance_SaveToDbEnded(object? sender, EventArgs e)
+        private void EventAggregator_ShowFileDataEnded(object? sender, EventArgs e)
         {
-            SaveToDbStatus.Visibility = Visibility.Collapsed;
+            ShowFileDataStatus.Visibility = Visibility.Collapsed;
+            BrowseInputFileButton.IsEnabled = true;
         }
 
-        private void Instance_SaveToDbStarted(object? sender, EventArgs e)
+        private void EventAggregator_SaveToDbStarted(object? sender, EventArgs e)
         {
             SaveToDbStatus.Visibility = Visibility.Visible;
+            BrowseInputFileButton.IsEnabled = false;
+            SaveToDBButton.IsEnabled = false;
+        }
+
+        private void EventAggregator_SaveToDbEnded(object? sender, EventArgs e)
+        {
+            SaveToDbStatus.Visibility = Visibility.Collapsed;
+            BrowseInputFileButton.IsEnabled = true;
+            SaveToDBButton.IsEnabled = true;
         }
 
         private void ExportToExcelButton_Click(object sender, RoutedEventArgs e)

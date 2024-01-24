@@ -11,6 +11,7 @@ namespace CSVHandler.UI.ViewModels
 {
     public class MainViewModel : ViewModelBase
     {
+        private const int RecordsLimit = 1000;
         private ICSVParserService ParserService { get; }
         private IPeopleRepository PeopleRepository { get; }
         private IXmlService XmlService { get; }
@@ -67,20 +68,25 @@ namespace CSVHandler.UI.ViewModels
 
             InputFileName = openFileDialog.FileName;
 
-            EventAggregator.Instance.RaiseShowFileDataStartedEvent();
-            PeopleToSave.Clear();
-
-            await foreach (var peopleChunk in ParserService.ParsePeopleCSV(InputFileName))
+            try
             {
-                List<Person> people = new List<Person>(peopleChunk);
+                EventAggregator.Instance.RaiseShowFileDataStartedEvent();
+                PeopleToSave.Clear();
 
-                foreach (var person in people) 
+                await foreach (var peopleChunk in ParserService.ParsePeopleCSV(InputFileName))
                 {
-                    PeopleToSave.Add(person);
+                    List<Person> people = new List<Person>(peopleChunk);
+
+                    foreach (var person in people)
+                    {
+                        PeopleToSave.Add(person);
+                    }
                 }
             }
-
-            EventAggregator.Instance.RaiseShowFileDataEndedEvent();
+            finally
+            {
+                EventAggregator.Instance.RaiseShowFileDataEndedEvent();
+            }
         }
 
         public async void SaveToDbCommand_Executed(object sender)
@@ -91,11 +97,19 @@ namespace CSVHandler.UI.ViewModels
                 return;
             }
 
-            EventAggregator.Instance.RaiseSaveToDbStartedEvent();
+            try
+            {
+                EventAggregator.Instance.RaiseSaveToDbStartedEvent();
 
-            await PeopleRepository.SaveManyAsync(new List<Person>(PeopleToSave));
-
-            EventAggregator.Instance.RaiseSaveToDbEndedEvent();
+                foreach (var peopleChunk in PeopleToSaveEnumerator())
+                {
+                    await PeopleRepository.SaveManyAsync(peopleChunk);
+                }
+            }
+            finally
+            {
+                EventAggregator.Instance.RaiseSaveToDbEndedEvent();
+            }
         }
 
         public async void ExportToXmlCommand_Executed(object sender, RoutedEventArgs e)
@@ -107,6 +121,21 @@ namespace CSVHandler.UI.ViewModels
         public async void ExportToExcelCommand_Executed(object sender, RoutedEventArgs e)
         {
             await Task.Run(() => { });
+        }
+
+        private IEnumerable<List<Person>> PeopleToSaveEnumerator()
+        {
+            for(int i = 0; i < PeopleToSave.Count; i += RecordsLimit)
+            {
+                List<Person> peopleChunk = new List<Person>();
+
+                for (int j = i; j < i + RecordsLimit && j < PeopleToSave.Count; j++)
+                {
+                    peopleChunk.Add(PeopleToSave[j]);
+                }
+
+                yield return peopleChunk;
+            }
         }
     }
 }
