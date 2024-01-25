@@ -14,7 +14,7 @@ namespace CSVHandler.UI.Data
         }
         public async Task SaveManyAsync(IEnumerable<Person> people)
         {
-            using(ApplicationContext db = Db)
+            using (ApplicationContext db = Db)
             {
                 await db.People.AddRangeAsync(people);
                 await db.SaveChangesAsync();
