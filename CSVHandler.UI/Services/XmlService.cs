@@ -7,9 +7,10 @@ namespace CSVHandler.UI.Services
 {
     public class XmlService : IXmlService
     {
-        public async Task SavePeopleToFile(List<Person> people, string filepath)
+        public async Task SavePeopleToFileAsync(List<Person> people, string filepath)
         {
             XmlSerializer xmlSerializer = new XmlSerializer(typeof(List<Person>));
+
 
             using (FileStream fs = new FileStream(filepath, FileMode.OpenOrCreate))
             {

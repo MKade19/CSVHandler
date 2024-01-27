@@ -1,8 +1,8 @@
 ﻿using CSVHandler.UI.Models;
 
-namespace CSVHandler.UI.Data.Abstract
+namespace CSVHandler.UI.Services.Abstract
 {
-    public interface IPeopleRepository
+    public interface IPersonService
     {
         public Task SaveManyAsync(IEnumerable<Person> people);
         public Task<IEnumerable<Person>> GetAllAsync();

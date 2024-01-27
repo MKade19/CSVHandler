@@ -5,9 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:viewModels="clr-namespace:CSVHandler.UI.ViewModels"
         xmlns:local="clr-namespace:CSVHandler.UI"
+        xmlns:converters="clr-namespace:CSVHandler.UI.Converters"
         mc:Ignorable="d"
         d:DataContext="{d:DesignInstance viewModels:MainViewModel}"
         Title="CSVHandler" Height="550" Width="1047">
+    <Window.Resources>
+        <converters:BoolToVisibleConverter x:Key="BoolToVisibleConverter"/>
+        <converters:InverseBooleanConverter x:Key="InverseBooleanConverter"/>
+    </Window.Resources>
     <Grid HorizontalAlignment="Center" Width="1026">
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
@@ -36,9 +41,13 @@
                     x:Name="BrowseInputFileButton"
                     Content="Browse" 
                     FontSize="16" Height="36" Width="79" 
+                    IsEnabled="{Binding IsBrowsingAllowed}"
                     Command="{Binding ShowFileDataCommand}"
                     Margin="0,0,10,0"/>
-                <Grid Margin="20" x:Name="ShowFileDataStatus" Visibility="Collapsed">
+                <Grid 
+                    Margin="20" 
+                    x:Name="ShowFileDataStatus" 
+                    Visibility="{Binding Path=IsCsvParsing, Converter={StaticResource BoolToVisibleConverter}}">
                     <ProgressBar Minimum="0" Maximum="50" Width="210" Height="20" IsIndeterminate="True"/>
                     <TextBlock Text="Parsing csv..." HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="14" />
                 </Grid>
@@ -49,10 +58,11 @@
                 <Button 
                     x:Name="SaveToDBButton" 
                     Content="Save to database" 
+                    IsEnabled="{Binding Path=AreDataSaving, Converter={StaticResource InverseBooleanConverter}}"
                     Margin="0,0,20,0"
                     FontSize="16" Height="36" Width="139" 
                     Command="{Binding SaveToDbCommand}"/>
-                <Grid Margin="20" x:Name="SaveToDbStatus" Visibility="Collapsed">
+                <Grid Margin="20" x:Name="SaveToDbStatus" Visibility="{Binding AreDataSaving, Converter={StaticResource BoolToVisibleConverter}}">
                     <ProgressBar Minimum="0" Maximum="50" Width="210" Height="20" IsIndeterminate="True"/>
                     <TextBlock Text="Saving to DB..." HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="14" />
                 </Grid>
@@ -61,9 +71,11 @@
                 <Button 
                     x:Name="ExportToXMLButton" 
                     Content="Export to XML" 
+                    IsEnabled="{Binding Path=IsExportingToXml, Converter={StaticResource InverseBooleanConverter}}"
                     Margin="0,0,20,0"
+                    Command="{Binding ExportToXmlCommand}"
                     FontSize="16" Height="36" Width="139"/>
-                <Grid Margin="20" x:Name="ExportToXmlStatus" Visibility="Collapsed">
+                <Grid Margin="20" x:Name="ExportToXmlStatus" Visibility="{Binding IsExportingToXml, Converter={StaticResource BoolToVisibleConverter}}">
                     <ProgressBar Minimum="0" Maximum="100" Width="210" Height="20" IsIndeterminate="True"/>
                     <TextBlock Text="Exporting to XML..." HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="14" />
                 </Grid>
@@ -72,9 +84,11 @@
                 <Button 
                     x:Name="ExportToExcelButton" 
                     Content="Export to Excel" 
+                    IsEnabled="{Binding Path=IsExportingToXml, Converter={StaticResource InverseBooleanConverter}}"
+                    Command="{Binding ExportToExcelCommand}"
                     Margin="0,0,20,0"
                     FontSize="16" Height="36" Width="139"/>
-                <Grid Margin="20" x:Name="ExportToExcelStatus" Visibility="Collapsed">
+                <Grid Margin="20" x:Name="ExportToExcelStatus" Visibility="{Binding IsExportingToExcel, Converter={StaticResource BoolToVisibleConverter}}">
                     <ProgressBar Minimum="0" Maximum="100" Width="210" Height="20" IsIndeterminate="True"/>
                     <TextBlock Text="Exporting to excel..." HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="14" />
                 </Grid>

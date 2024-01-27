@@ -1,5 +1,4 @@
-﻿using CSVHandler.UI.Data.Abstract;
-using CSVHandler.UI.Models;
+﻿using CSVHandler.UI.Models;
 using CSVHandler.UI.Services.Abstract;
 using CSVHandler.UI.Util;
 using Microsoft.Win32;
@@ -11,27 +10,31 @@ namespace CSVHandler.UI.ViewModels
 {
     public class MainViewModel : ViewModelBase
     {
-        private const int RecordsLimit = 1000;
         private ICSVParserService ParserService { get; }
-        private IPeopleRepository PeopleRepository { get; }
+        private IPersonService PersonService { get; }
         private IXmlService XmlService { get; }
         public DelegateCommand ShowFileDataCommand { get; }
         public DelegateCommand SaveToDbCommand { get; }
-        public RoutedCommand ExportToXmlCommand { get; }
-        public RoutedCommand ExportToExcelCommand { get; }
+        public DelegateCommand ExportToXmlCommand { get; }
+        public DelegateCommand ExportToExcelCommand { get; }
 
-        public MainViewModel(ICSVParserService parserService, IPeopleRepository peopleRepository, IXmlService xmlService)
+        public MainViewModel(ICSVParserService parserService, IPersonService personService, IXmlService xmlService)
         {
             ParserService = parserService;
-            PeopleRepository = peopleRepository;
+            PersonService = personService;
             XmlService = xmlService;
             ShowFileDataCommand = new DelegateCommand(ShowFileDataCommand_Executed);
             SaveToDbCommand = new DelegateCommand(SaveToDbCommand_Executed);
-            ExportToXmlCommand = new RoutedCommand(nameof(ExportToXmlCommand), typeof(MainWindow));
-            ExportToExcelCommand = new RoutedCommand(nameof(ExportToExcelCommand), typeof(MainWindow));
+            ExportToXmlCommand = new DelegateCommand(ExportToXmlCommand_Executed);
+            ExportToExcelCommand = new DelegateCommand(ExportToExcelCommand_Executed);
         }
 
         private string _inputFileName = string.Empty;
+        private bool _isCsvParsing = false;
+        private bool _isBrowsingAllowed = true;
+        private bool _areDataSaving = false;
+        private bool _isExportingToXml = false;
+        private bool _isExportingToExcel = false;
 
         public string InputFileName 
         { 
@@ -43,6 +46,55 @@ namespace CSVHandler.UI.ViewModels
             }
         }
 
+        public bool IsCsvParsing
+        {
+            get => _isCsvParsing;
+            set
+            {
+                _isCsvParsing = value;
+                OnPropertyChanged(nameof(IsCsvParsing));
+            }
+        }
+
+        public bool IsBrowsingAllowed
+        {
+            get => _isBrowsingAllowed;
+            set
+            {
+                _isBrowsingAllowed = value;
+                OnPropertyChanged(nameof(IsBrowsingAllowed));
+            }
+        }
+
+        public bool AreDataSaving
+        {
+            get => _areDataSaving;
+            set
+            {
+                _areDataSaving = value;
+                OnPropertyChanged(nameof(AreDataSaving));
+            }
+        }
+
+        public bool IsExportingToXml
+        {
+            get => _isExportingToXml;
+            set
+            {
+                _isExportingToXml = value;
+                OnPropertyChanged(nameof(IsExportingToXml));
+            }
+        }
+
+        public bool IsExportingToExcel
+        {
+            get => _isExportingToExcel;
+            set
+            {
+                _isExportingToExcel = value;
+                OnPropertyChanged(nameof(IsExportingToExcel));
+            }
+        }
 
         private ObservableCollection<Person> _peopleToSave = new ObservableCollection<Person>();
 
@@ -70,7 +122,8 @@ namespace CSVHandler.UI.ViewModels
 
             try
             {
-                EventAggregator.Instance.RaiseShowFileDataStartedEvent();
+                IsCsvParsing = true;
+                IsBrowsingAllowed = false;
                 PeopleToSave.Clear();
 
                 await foreach (var peopleChunk in ParserService.ParsePeopleCSV(InputFileName))
@@ -85,7 +138,8 @@ namespace CSVHandler.UI.ViewModels
             }
             finally
             {
-                EventAggregator.Instance.RaiseShowFileDataEndedEvent();
+                IsCsvParsing = false;
+                IsBrowsingAllowed = true;
             }
         }
 
@@ -99,43 +153,35 @@ namespace CSVHandler.UI.ViewModels
 
             try
             {
-                EventAggregator.Instance.RaiseSaveToDbStartedEvent();
-
-                foreach (var peopleChunk in PeopleToSaveEnumerator())
-                {
-                    await PeopleRepository.SaveManyAsync(peopleChunk);
-                }
+                AreDataSaving = true;
+                IsBrowsingAllowed = false;
+                await PersonService.SaveManyAsync(PeopleToSave);
             }
             finally
             {
-                EventAggregator.Instance.RaiseSaveToDbEndedEvent();
+                AreDataSaving = false;
+                IsBrowsingAllowed = true;
             }
         }
 
-        public async void ExportToXmlCommand_Executed(object sender, RoutedEventArgs e)
+        public async void ExportToXmlCommand_Executed(object sender)
         {
-            List<Person> people = new List<Person>(await PeopleRepository.GetAllAsync());
-            await XmlService.SavePeopleToFile(people, "D:\\people.xml");
+            List<Person> people = new List<Person>(await PersonService.GetAllAsync());
+
+            try
+            {
+                IsExportingToXml = true;
+                await XmlService.SavePeopleToFileAsync(people, "D:\\people.xml");
+            }
+            finally
+            {
+                IsExportingToXml = false;
+            }
         }
 
-        public async void ExportToExcelCommand_Executed(object sender, RoutedEventArgs e)
+        public async void ExportToExcelCommand_Executed(object sender)
         {
             await Task.Run(() => { });
-        }
-
-        private IEnumerable<List<Person>> PeopleToSaveEnumerator()
-        {
-            for(int i = 0; i < PeopleToSave.Count; i += RecordsLimit)
-            {
-                List<Person> peopleChunk = new List<Person>();
-
-                for (int j = i; j < i + RecordsLimit && j < PeopleToSave.Count; j++)
-                {
-                    peopleChunk.Add(PeopleToSave[j]);
-                }
-
-                yield return peopleChunk;
-            }
         }
     }
 }

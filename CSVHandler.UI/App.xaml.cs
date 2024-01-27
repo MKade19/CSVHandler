@@ -1,14 +1,11 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using System.Configuration;
-using System.Data;
-using System.Windows;
-using CSVHandler.UI.Util;
-using CSVHandler.UI.Data;
-using CSVHandler.UI.Services.Abstract;
-using CSVHandler.UI.Services;
-using CSVHandler.UI.Models;
+﻿using CSVHandler.UI.Data;
 using CSVHandler.UI.Data.Abstract;
+using CSVHandler.UI.Services;
+using CSVHandler.UI.Services.Abstract;
+using CSVHandler.UI.Util;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using System.Windows;
 
 namespace CSVHandler.UI
 {
@@ -33,21 +30,22 @@ namespace CSVHandler.UI
         private void ExceptionHandler(object sender, UnhandledExceptionEventArgs e)
         {
             Exception ex = (Exception)e.ExceptionObject;
+            MessageBoxStore.Error(ex.Message);
         }
 
         private void ConfigureServices(ServiceCollection services)
         {
             services.AddSingleton<MainWindow>();
             services.AddSingleton<WindowCommands>();
-            //services.AddDbContext<ApplicationContext>();
             services.AddDbContextPool<ApplicationContext>(options => 
             {
                 options.UseSqlServer("Server=.\\MKMSSQLSERVER;Database=PeopleDB;Trusted_Connection=True;TrustServerCertificate=True;");
             });
             services.AddTransient<ICSVParserService, CSVParserService>();
             services.AddTransient<IXmlService, XmlService>();
-            services.AddTransient<IFileService, FileService>();
-            services.AddTransient<IPeopleRepository, PeopleRepository>();
+            services.AddTransient<IFileService, FileService>(); 
+            services.AddTransient<IPersonService, PersonService>();
+            services.AddTransient<IPersonRepository, PersonRepository>();
         }
 
         private void Current_DispatcherUnhandledException(object sender, System.Windows.Threading.DispatcherUnhandledExceptionEventArgs e)

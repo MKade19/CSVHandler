@@ -4,11 +4,11 @@ using Microsoft.EntityFrameworkCore;
 
 namespace CSVHandler.UI.Data
 {
-    public class PeopleRepository : IPeopleRepository
+    public class PersonRepository : IPersonRepository
     {
         private ApplicationContext Db { get; }
 
-        public PeopleRepository(ApplicationContext context) 
+        public PersonRepository(ApplicationContext context) 
         {
             Db = context;
         }
@@ -16,8 +16,8 @@ namespace CSVHandler.UI.Data
         {
             using (ApplicationContext db = Db)
             {
-                await db.People.AddRangeAsync(people);
-                await db.SaveChangesAsync();
+                await db.BulkInsertAsync(people);
+                await db.BulkSaveChangesAsync();
             }
         }
 
