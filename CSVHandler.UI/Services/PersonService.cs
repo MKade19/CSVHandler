@@ -7,16 +7,19 @@ namespace CSVHandler.UI.Services
 {
     public class PersonService : IPersonService
     {
-        private IPersonRepository PeopleRepository;
+        private IPersonRepository PersonRepository;
 
         public PersonService(IPersonRepository personRepository)
         {
-            PeopleRepository = personRepository;
+            PersonRepository = personRepository;
         }
 
-        public async Task<IEnumerable<Person>> GetAllAsync()
+        public async IAsyncEnumerable<IEnumerable<Person>> GetChunkAsync()
         {
-            return await PeopleRepository.GetAllAsync();
+            await foreach (var chunk in PersonRepository.GetChunkAsync())
+            {
+                yield return chunk;
+            }
         }
 
         public async Task SaveManyAsync(IEnumerable<Person> people)
@@ -32,7 +35,7 @@ namespace CSVHandler.UI.Services
                     peopleChunk.Add(peopleList[j]);
                 }
 
-                await PeopleRepository.SaveManyAsync(peopleChunk);
+                await PersonRepository.SaveManyAsync(peopleChunk);
             }
         }
     }

@@ -1,25 +1,18 @@
-﻿using CSVHandler.UI.Data.Abstract;
-using CSVHandler.UI.Services.Abstract;
-using CSVHandler.UI.Util;
+﻿using CSVHandler.UI.Services.Abstract;
 using CSVHandler.UI.ViewModels;
-using System.Windows;
+using MahApps.Metro.Controls;
 
 namespace CSVHandler.UI
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow : MetroWindow
     {
-        public MainWindow(ICSVParserService parserService, IPersonService personService, IXmlService xmlService)
+        public MainWindow(ICSVParserService parserService, IPersonService personService, IExcelService excelService, IXmlService xmlService)
         {
             InitializeComponent();
-            DataContext = new MainViewModel(parserService, personService, xmlService);
-        }
-
-        private void ExportToExcelButton_Click(object sender, RoutedEventArgs e)
-        {
-            MessageBoxStore.Warning("iiiii");
+            DataContext = new MainViewModel(parserService, excelService, xmlService, personService);
         }
     }
 }

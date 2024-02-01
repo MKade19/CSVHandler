@@ -7,7 +7,27 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
+    <Compile Update="Views\CSVFileView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\SaveToDbView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\ExportView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
     <Page Update="MainWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\CsvFileView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\SaveToDbView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\ExportView.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>

@@ -1,5 +1,6 @@
 ﻿using CSVHandler.UI.Data.Abstract;
 using CSVHandler.UI.Models;
+using CSVHandler.UI.Constants;
 using Microsoft.EntityFrameworkCore;
 
 namespace CSVHandler.UI.Data
@@ -21,11 +22,16 @@ namespace CSVHandler.UI.Data
             }
         }
 
-        public async Task<IEnumerable<Person>> GetAllAsync()
+        public async IAsyncEnumerable<IEnumerable<Person>> GetChunkAsync()
         {
             using (ApplicationContext db = Db)
             {
-                return await db.People.ToListAsync();
+                for (int i = 0; i < db.People.Count(); i += DataConstants.RecordsLimit)
+                {
+                    yield return await db.People.Skip(i)
+                        .Take(DataConstants.RecordsLimit)
+                        .ToListAsync();
+                }
             }
         }
     }

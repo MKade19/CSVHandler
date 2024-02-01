@@ -43,6 +43,7 @@ namespace CSVHandler.UI
             });
             services.AddTransient<ICSVParserService, CSVParserService>();
             services.AddTransient<IXmlService, XmlService>();
+            services.AddTransient<IExcelService, ExcelService>();
             services.AddTransient<IFileService, FileService>(); 
             services.AddTransient<IPersonService, PersonService>();
             services.AddTransient<IPersonRepository, PersonRepository>();
