@@ -17,7 +17,7 @@
         <converters:IntToCollapsedConverter x:Key="IntToCollapsedConverter"/>
     </UserControl.Resources>
     <Grid Width="944" HorizontalAlignment="Center">
-        <StackPanel Panel.ZIndex="0" VerticalAlignment="Center" Height="695" HorizontalAlignment="Center" Width="828">
+        <StackPanel HorizontalAlignment="Center" Width="828">
             <TextBlock Text="CSV parser" 
                        Margin="0,0,0,10"
                        FontSize="36" 

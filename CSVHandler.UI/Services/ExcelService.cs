@@ -1,46 +1,34 @@
 ﻿using CSVHandler.UI.Models;
 using CSVHandler.UI.Services.Abstract;
-using System.ComponentModel;
-using SData = System.Data;
 
 namespace CSVHandler.UI.Services
 {
     public class ExcelService : IExcelService
     {
-        public void SavePeopleToExcelAsync(IEnumerable<Person> peopleData)
+        public async Task SavePeopleToExcelAsync(IEnumerable<Person> peopleData)
         {
-            List<Person> people = peopleData.ToList();
-            SData.DataTable dataTable = ConvertToDataTable(people);
-
-            Microsoft.Office.Interop.Excel.Application excel = new Microsoft.Office.Interop.Excel.Application();
-            excel.Visible = false;
-            excel.DisplayAlerts = false;
-
-            Microsoft.Office.Interop.Excel.Workbook excelworkBook = excel.Workbooks.Add(Type.Missing);
-            Microsoft.Office.Interop.Excel.Worksheet excelSheet = (Microsoft.Office.Interop.Excel.Worksheet)excelworkBook.ActiveSheet;
-            excelSheet.Name = "People data";
-
-            excelSheet.Cells[1, 1] = "Sample test data";
-            excelSheet.Cells[1, 2] = "Date : " + DateTime.Now.ToShortDateString();
-
-            Microsoft.Office.Interop.Excel.Range excelCellrange;
-        }
-
-        public SData.DataTable ConvertToDataTable<T>(IList<T> data)
-        {
-            PropertyDescriptorCollection properties = TypeDescriptor.GetProperties(typeof(T));
-            SData.DataTable table = new SData.DataTable();
-
-            foreach (PropertyDescriptor prop in properties)
-                table.Columns.Add(prop.Name, Nullable.GetUnderlyingType(prop.PropertyType) ?? prop.PropertyType);
-            foreach (T item in data)
+            await Task.Run(() => 
             {
-                SData.DataRow row = table.NewRow();
-                foreach (PropertyDescriptor prop in properties)
-                    row[prop.Name] = prop.GetValue(item) ?? DBNull.Value;
-                table.Rows.Add(row);
-            }
-            return table;
+                List<Person> people = peopleData.ToList();
+
+                Microsoft.Office.Interop.Excel.Application excel = new Microsoft.Office.Interop.Excel.Application();
+                excel.Visible = true;
+                excel.DisplayAlerts = false;
+
+                Microsoft.Office.Interop.Excel.Workbook excelworkBook = excel.Workbooks.Add(Type.Missing);
+                Microsoft.Office.Interop.Excel.Worksheet excelSheet = (Microsoft.Office.Interop.Excel.Worksheet)excelworkBook.ActiveSheet;
+                excelSheet.Name = "People data";
+
+                for (int i = 0; i < people.Count; i++)
+                {
+                    excelSheet.Cells[i + 1, 1] = people[i].PublishDate;
+                    excelSheet.Cells[i + 1, 2] = people[i].FirstName;
+                    excelSheet.Cells[i + 1, 3] = people[i].MiddleName;
+                    excelSheet.Cells[i + 1, 4] = people[i].LastName;
+                    excelSheet.Cells[i + 1, 5] = people[i].Town;
+                    excelSheet.Cells[i + 1, 6] = people[i].Country;
+                }
+            });
         }
     }
 }

@@ -2,6 +2,7 @@
 using CSVHandler.UI.Data.Abstract;
 using CSVHandler.UI.Models;
 using CSVHandler.UI.Services.Abstract;
+using Microsoft.Office.Interop.Excel;
 
 namespace CSVHandler.UI.Services
 {
@@ -14,9 +15,9 @@ namespace CSVHandler.UI.Services
             PersonRepository = personRepository;
         }
 
-        public async IAsyncEnumerable<IEnumerable<Person>> GetChunkAsync()
+        public async IAsyncEnumerable<IEnumerable<Person>> GetFilteredChunkAsync(PersonFilter filter)
         {
-            await foreach (var chunk in PersonRepository.GetChunkAsync())
+            await foreach (var chunk in PersonRepository.GetFilteredChunkAsync(filter))
             {
                 yield return chunk;
             }

@@ -12,8 +12,8 @@
           "MahApps.Metro": "2.4.10",
           "Microsoft.EntityFrameworkCore": "6.0.0",
           "Microsoft.EntityFrameworkCore.SqlServer": "6.0.0",
-          "Microsoft.Office.Interop.Excel": "15.0.4795.1001",
-          "Z.EntityFramework.Extensions.EFCore": "6.101.2.1"
+          "Z.EntityFramework.Extensions.EFCore": "6.101.2.1",
+          "OFFICE": "15.0.0.0"
         },
         "runtime": {
           "CSVHandler.UI.dll": {}
@@ -332,14 +332,6 @@
         }
       },
       "Microsoft.NETCore.Platforms/3.1.0": {},
-      "Microsoft.Office.Interop.Excel/15.0.4795.1001": {
-        "runtime": {
-          "lib/netstandard2.0/Microsoft.Office.Interop.Excel.dll": {
-            "assemblyVersion": "15.0.0.0",
-            "fileVersion": "15.0.4795.1000"
-          }
-        }
-      },
       "Microsoft.Win32.Registry/4.7.0": {
         "dependencies": {
           "System.Security.AccessControl": "6.0.0",
@@ -443,6 +435,14 @@
           "lib/net6.0/Z.EntityFramework.Extensions.EFCore.dll": {
             "assemblyVersion": "6.101.2.1",
             "fileVersion": "6.101.2.1"
+          }
+        }
+      },
+      "OFFICE/15.0.0.0": {
+        "runtime": {
+          "OFFICE.DLL": {
+            "assemblyVersion": "15.0.0.0",
+            "fileVersion": "15.0.4613.1000"
           }
         }
       }
@@ -643,13 +643,6 @@
       "path": "microsoft.netcore.platforms/3.1.0",
       "hashPath": "microsoft.netcore.platforms.3.1.0.nupkg.sha512"
     },
-    "Microsoft.Office.Interop.Excel/15.0.4795.1001": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-cuvqi/U5MYSM0gvR2l90q0m/urRgmg69EiwP5VWp1RcaJ0YT5G26Va5LaOZ3KJFc22FNihS5CUjeePUp2YpGQA==",
-      "path": "microsoft.office.interop.excel/15.0.4795.1001",
-      "hashPath": "microsoft.office.interop.excel.15.0.4795.1001.nupkg.sha512"
-    },
     "Microsoft.Win32.Registry/4.7.0": {
       "type": "package",
       "serviceable": true,
@@ -796,6 +789,11 @@
       "sha512": "sha512-T96Br25WN7xkggyJTXrrNo9OoeDRmbawnb0iwxNSgV72ZeBLtBcV1Xf1TLYm8MfdfSKKiNohFZMTNC6ZIeIAfg==",
       "path": "z.entityframework.extensions.efcore/6.101.2.1",
       "hashPath": "z.entityframework.extensions.efcore.6.101.2.1.nupkg.sha512"
+    },
+    "OFFICE/15.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
     }
   }
 }

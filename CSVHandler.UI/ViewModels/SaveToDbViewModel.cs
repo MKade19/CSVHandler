@@ -69,11 +69,10 @@ namespace CSVHandler.UI.ViewModels
 
             InputFileName = openFileDialog.FileName;
             AreDataLoading = true;
+            PeopleToSave.Clear();
 
             try
             {
-                PeopleToSave.Clear();
-
                 await foreach (var peopleChunk in ParserService.ParsePeopleCSV(InputFileName))
                 {
                     List<Person> people = peopleChunk.ToList();
@@ -124,5 +123,6 @@ namespace CSVHandler.UI.ViewModels
             PeopleToSave.Clear();
             InputFileName = string.Empty;
         }
+
     }
 }

@@ -13,12 +13,6 @@ namespace CSVHandler.UI.Views
         {
             InitializeComponent();
             DataContext = new ExportViewModel(xmlService, personService, excelService);
-            Loaded += ExportView_Loaded;
-        }
-
-        private async void ExportView_Loaded(object sender, System.Windows.RoutedEventArgs e)
-        {
-            await ((ExportViewModel)DataContext).LoadPeopleToGrid();
         }
     }
 }

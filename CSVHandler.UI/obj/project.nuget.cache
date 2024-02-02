@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "4yfN6qYVA+MXi/xJ+BDwJuaiScRzXfprJt4qrXkjO6vs57K9DJ5ndym2QI9eH+/SE0MiK116JPoYaKdMf73j9g==",
+  "dgSpecHash": "BvRLC/AJ9dKExmJeWSkGcBknBIpcqTPqHy/qDH/dgMRVrCvEh5aMjTUl6WJVhKQKK2oT8mGmX7TpGgaq/uEHog==",
   "success": true,
   "projectFilePath": "D:\\My_documents\\practice\\c#\\CSVHandler\\CSVHandler\\CSVHandler.UI\\CSVHandler.UI.csproj",
   "expectedPackageFiles": [
@@ -31,7 +31,6 @@
     "C:\\Users\\Максим\\.nuget\\packages\\microsoft.identitymodel.protocols.openidconnect\\6.8.0\\microsoft.identitymodel.protocols.openidconnect.6.8.0.nupkg.sha512",
     "C:\\Users\\Максим\\.nuget\\packages\\microsoft.identitymodel.tokens\\6.8.0\\microsoft.identitymodel.tokens.6.8.0.nupkg.sha512",
     "C:\\Users\\Максим\\.nuget\\packages\\microsoft.netcore.platforms\\3.1.0\\microsoft.netcore.platforms.3.1.0.nupkg.sha512",
-    "C:\\Users\\Максим\\.nuget\\packages\\microsoft.office.interop.excel\\15.0.4795.1001\\microsoft.office.interop.excel.15.0.4795.1001.nupkg.sha512",
     "C:\\Users\\Максим\\.nuget\\packages\\microsoft.win32.registry\\4.7.0\\microsoft.win32.registry.4.7.0.nupkg.sha512",
     "C:\\Users\\Максим\\.nuget\\packages\\microsoft.win32.systemevents\\6.0.0\\microsoft.win32.systemevents.6.0.0.nupkg.sha512",
     "C:\\Users\\Максим\\.nuget\\packages\\microsoft.xaml.behaviors.wpf\\1.1.19\\microsoft.xaml.behaviors.wpf.1.1.19.nupkg.sha512",

@@ -4,6 +4,6 @@ namespace CSVHandler.UI.Services.Abstract
 {
     public interface IExcelService
     {
-        public void SavePeopleToExcelAsync(IEnumerable<Person> peopleData);
+        public Task SavePeopleToExcelAsync(IEnumerable<Person> peopleData);
     }
 }
