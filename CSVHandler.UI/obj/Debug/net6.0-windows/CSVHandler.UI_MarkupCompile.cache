@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NET;NET6_0;NETCOREAPP
 D:\My_documents\practice\c#\CSVHandler\CSVHandler\CSVHandler.UI\App.xaml
-5569772908
+6-1494243657
 
-371795881757
-350-156245493
-MainWindow.xaml;Resources\lang.ru-RU.xaml;Resources\lang.xaml;Views\ExportView.xaml;Views\SaveToDbView.xaml;
+39739229985
+3621136719131
+MainWindow.xaml;Resources\lang.ru-RU.xaml;Resources\lang.xaml;Views\ExportView.xaml;Views\SaveToDbView.xaml;Views\XmlSaveDialogView.xaml;
 
 False
 

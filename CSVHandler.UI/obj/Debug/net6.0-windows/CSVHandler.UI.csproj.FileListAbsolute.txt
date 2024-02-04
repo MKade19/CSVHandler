@@ -69,3 +69,10 @@ D:\My_documents\practice\c#\CSVHandler\CSVHandler\CSVHandler.UI\bin\Debug\net6.0
 D:\My_documents\practice\c#\CSVHandler\CSVHandler\CSVHandler.UI\obj\Debug\net6.0-windows\Resources\lang.baml
 D:\My_documents\practice\c#\CSVHandler\CSVHandler\CSVHandler.UI\obj\Debug\net6.0-windows\Resources\lang.ru-RU.baml
 D:\My_documents\practice\c#\CSVHandler\CSVHandler\CSVHandler.UI\bin\Debug\net6.0-windows\CSVHandler.UI.dll.config
+D:\My_documents\practice\c#\CSVHandler\CSVHandler\CSVHandler.UI\bin\Debug\net6.0-windows\Microsoft.WindowsAPICodePack.Core.dll
+D:\My_documents\practice\c#\CSVHandler\CSVHandler\CSVHandler.UI\bin\Debug\net6.0-windows\Microsoft.WindowsAPICodePack.ExtendedLinguisticServices.dll
+D:\My_documents\practice\c#\CSVHandler\CSVHandler\CSVHandler.UI\bin\Debug\net6.0-windows\Microsoft.WindowsAPICodePack.Sensors.dll
+D:\My_documents\practice\c#\CSVHandler\CSVHandler\CSVHandler.UI\bin\Debug\net6.0-windows\Microsoft.WindowsAPICodePack.Shell.dll
+D:\My_documents\practice\c#\CSVHandler\CSVHandler\CSVHandler.UI\bin\Debug\net6.0-windows\Microsoft.WindowsAPICodePack.ShellExtensions.dll
+D:\My_documents\practice\c#\CSVHandler\CSVHandler\CSVHandler.UI\obj\Debug\net6.0-windows\Views\XmlSaveDialogView.g.cs
+D:\My_documents\practice\c#\CSVHandler\CSVHandler\CSVHandler.UI\obj\Debug\net6.0-windows\Views\XmlSaveDialogView.baml

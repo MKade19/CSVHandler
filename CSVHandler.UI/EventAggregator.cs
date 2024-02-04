@@ -15,6 +15,7 @@
         public event EventHandler? SaveToDbEnded;
         public event EventHandler? ShowFileDataStarted;
         public event EventHandler? ShowFileDataEnded;
+        public static event EventHandler? LanguageChanged;
 
         public void RaiseSaveToDbStartedEvent()
         {

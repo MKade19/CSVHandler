@@ -13,7 +13,7 @@
     <v:String x:Key="TableIsEmptyMessage">Файл не выбран. Выберите CSV файл для парсинга...</v:String>
     <!--ExportView-->
     <v:String x:Key="ExportViewHeader">Экспорт данных</v:String>
-    <v:String x:Key="FilterDataHeader">Введите критерии для экспрорта</v:String>
+    <v:String x:Key="FilterDataHeader">Введите критерии для экспорта</v:String>
     <v:String x:Key="ExportGridHeader">Записи на экспорт</v:String>
     <v:String x:Key="StartDateLabel">Мин дата</v:String>
     <v:String x:Key="EndDateLabel">Макс дата</v:String>
@@ -23,7 +23,7 @@
     <v:String x:Key="TownLabel">Город</v:String>
     <v:String x:Key="CountryLabel">Страна</v:String>
     <!--Buttons-->
-    <v:String x:Key="SaveToDBButtonCaption">Сохранить в БД</v:String>
+    <v:String x:Key="SaveButtonCaption">Сохранить</v:String>
     <v:String x:Key="SubmitButtonCaption">Отправить</v:String>
     <v:String x:Key="RefreshButtonCaption">Сбросить</v:String>
     <v:String x:Key="ExportToXmlButtonCaption">Экспорт в XML</v:String>
@@ -35,4 +35,19 @@
     <v:String x:Key="LastnameGridHeader">Фамилия</v:String>
     <v:String x:Key="TownGridHeader">Город</v:String>
     <v:String x:Key="CountryGridHeader">Страна</v:String>
+    <!--Dialogs-->
+    <v:String x:Key="ConfirmationDialogTitle">Подтверждение</v:String>
+    <v:String x:Key="ErrorDialogTitle">Ошибка</v:String>
+    <v:String x:Key="WarningDialogTitle">Предупреждение</v:String>
+    <v:String x:Key="InformationDialogTitle">Информация</v:String>
+    <v:String x:Key="XmlSaveDialogTitle">Сохранить XML</v:String>
+    <v:String x:Key="ChooseDirectoryDialog">Выбрать директорию</v:String>
+    <v:String x:Key="FileDoesNotExistWarningDialog">Выберите существующий файл!</v:String>
+    <v:String x:Key="ExportToXmlResultYes">Данные были экспортированы в XML!</v:String>
+    <v:String x:Key="SaveDataDialogCaption">Вы точно желаете сохранить эти данные?</v:String>
+    <v:String x:Key="RefreshChoiceDialogCaption">Вы точно желаете сбросить выбор?</v:String>
+    <v:String x:Key="RefreshTableDialogCaption">Вы точно желаете сбросить таблицу?</v:String>
+    <v:String x:Key="CsvFileDialogFilter">CSV файлы (*.csv)|*.csv</v:String>
+    <v:String x:Key="XmlFileNameLabel">Введите имя XML файла</v:String>
+    
 </ResourceDictionary>

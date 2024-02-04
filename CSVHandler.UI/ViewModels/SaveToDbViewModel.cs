@@ -3,6 +3,7 @@ using CSVHandler.UI.Services.Abstract;
 using CSVHandler.UI.Util;
 using Microsoft.Win32;
 using System.Collections.ObjectModel;
+using System.Windows;
 
 namespace CSVHandler.UI.ViewModels
 {
@@ -60,7 +61,7 @@ namespace CSVHandler.UI.ViewModels
         public async void ShowFileDataCommand_Executed(object sender)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.Filter = "CSV Files (*.csv)|*.csv";
+            openFileDialog.Filter = (string)Application.Current.FindResource("CsvFileDialogFilter");
 
             if (openFileDialog.ShowDialog() == false)
             {
@@ -93,11 +94,11 @@ namespace CSVHandler.UI.ViewModels
         {
             if (string.IsNullOrEmpty(InputFileName))
             {
-                MessageBoxStore.Warning("Choose the existing file!");
+                MessageBoxStore.Warning((string)Application.Current.FindResource("Choose the existing file!"));
                 return;
             }
 
-            if (MessageBoxStore.Confirmation("Do you want to save these data?") == System.Windows.MessageBoxResult.No)
+            if (MessageBoxStore.Confirmation((string)Application.Current.FindResource("SaveDataDialogCaption")) == System.Windows.MessageBoxResult.No)
             {
                 return;
             }
@@ -115,7 +116,7 @@ namespace CSVHandler.UI.ViewModels
 
         public void RefreshCommand_Executed(object sender)
         {
-            if (MessageBoxStore.Confirmation("Do you want to refresh the choice?") == System.Windows.MessageBoxResult.No)
+            if (MessageBoxStore.Confirmation((string)Application.Current.FindResource("RefreshChoiceDialogCaption")) == System.Windows.MessageBoxResult.No)
             {
                 return;
             }

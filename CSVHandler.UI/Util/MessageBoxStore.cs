@@ -14,10 +14,10 @@ namespace CSVHandler.UI.Util
             return MessageBox.Show
             (
                 message,
-                "Confirmation",
+                (string)Application.Current.FindResource("ConfirmationDialogTitle"),
                 MessageBoxButton.YesNo,
                 MessageBoxImage.Question
-            );
+            );;
         }
 
         /// <summary>
@@ -30,7 +30,7 @@ namespace CSVHandler.UI.Util
             return MessageBox.Show
             (
                 message,
-                "Error",
+                (string)Application.Current.FindResource("ErrorDialogTitle"),
                 MessageBoxButton.OKCancel,
                 MessageBoxImage.Error
             );
@@ -46,7 +46,7 @@ namespace CSVHandler.UI.Util
             return MessageBox.Show
             (
                 message,
-                "Warning",
+                (string)Application.Current.FindResource("WarningDialogTitle"),
                 MessageBoxButton.OKCancel,
                 MessageBoxImage.Warning
             );
@@ -62,7 +62,7 @@ namespace CSVHandler.UI.Util
             return MessageBox.Show
             (
                 message,
-                "Information",
+                (string)Application.Current.FindResource("InformationDialogTitle"),
                 MessageBoxButton.OKCancel,
                 MessageBoxImage.Information
             );

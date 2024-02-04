@@ -23,7 +23,7 @@
     <v:String x:Key="TownLabel">Town</v:String>
     <v:String x:Key="CountryLabel">Country</v:String>
     <!--Buttons-->
-    <v:String x:Key="SaveToDBButtonCaption">Save to database</v:String>
+    <v:String x:Key="SaveButtonCaption">Save</v:String>
     <v:String x:Key="SubmitButtonCaption">Submit</v:String>
     <v:String x:Key="RefreshButtonCaption">Refresh</v:String>
     <v:String x:Key="ExportToXmlButtonCaption">Export to XML</v:String>
@@ -35,4 +35,19 @@
     <v:String x:Key="LastnameGridHeader">Lastname</v:String>
     <v:String x:Key="TownGridHeader">Town</v:String>
     <v:String x:Key="CountryGridHeader">Country</v:String>
+    <!--Dialogs-->
+    <v:String x:Key="ConfirmationDialogTitle">Confirmation</v:String>
+    <v:String x:Key="ErrorDialogTitle">Error</v:String>
+    <v:String x:Key="WarningDialogTitle">Warning</v:String>
+    <v:String x:Key="InformationDialogTitle">Information</v:String>
+    <v:String x:Key="XmlSaveDialogTitle">Save XML</v:String>
+    <v:String x:Key="ChooseDirectoryDialog">Choosing directory</v:String>
+    <v:String x:Key="FileDoesNotExistWarningDialog">Choose the existing file!</v:String>
+    <v:String x:Key="ExportToXmlResultYes">Data were exported to xml!</v:String>
+    <v:String x:Key="SaveDataDialogCaption">Do you want to save these data?</v:String>
+    <v:String x:Key="RefreshChoiceDialogCaption">Do you want to refresh the choice?</v:String>
+    <v:String x:Key="RefreshTableDialogCaption">Do you want to refresh the table?</v:String>
+    <v:String x:Key="CsvFileDialogFilter">CSV files (*.csv)|*.csv</v:String>
+    <v:String x:Key="XmlFileNameLabel">Enter XML filename</v:String>
+    
 </ResourceDictionary>

@@ -80,6 +80,10 @@
               "target": "Package",
               "version": "[5.0.0, )"
             },
+            "WindowsAPICodePack": {
+              "target": "Package",
+              "version": "[7.0.4, )"
+            },
             "Z.EntityFramework.Extensions.EFCore": {
               "target": "Package",
               "version": "[6.101.2.1, )"

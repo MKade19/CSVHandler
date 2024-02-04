@@ -60,7 +60,7 @@
                 <StackPanel Orientation="Horizontal" Margin="0,20,0,0" HorizontalAlignment="Center" Width="356">
                     <Button 
                         x:Name="SaveToDBButton" 
-                        Content="{DynamicResource SaveToDBButtonCaption}" 
+                        Content="{DynamicResource SaveButtonCaption}" 
                         Margin="0,0,20,0"
                         FontSize="16" Height="36" Width="166" 
                         Command="{Binding SaveToDbCommand}" FontWeight="Bold"/>

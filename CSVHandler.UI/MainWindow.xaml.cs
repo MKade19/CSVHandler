@@ -12,16 +12,14 @@ namespace CSVHandler.UI
     /// </summary>
     public partial class MainWindow : MetroWindow
     {
-        //private ILogger Logger { get; set; }
+        private ILogger<MainWindow> Logger { get; }
 
-        public MainWindow(ICSVParserService parserService, IPersonService personService, IExcelService excelService, IXmlService xmlService)
+        public MainWindow(ICSVParserService parserService, IPersonService personService, IExcelService excelService, IXmlService xmlService, ILogger<MainWindow> logger)
         {
             InitializeComponent();
             DataContext = new MainViewModel(parserService, excelService, xmlService, personService);
-            Loaded += MainWindow_Loaded;
-
+            Logger = logger;
             App.LanguageChanged += LanguageChanged;
-
             CultureInfo currLang = App.Language;
 
             //Заполняем меню смены языка:
@@ -35,6 +33,7 @@ namespace CSVHandler.UI
                 menuLang.Click += ChangeLanguageClick;
                 LanguageMenu.Items.Add(menuLang);
             }
+            
         }
 
         private void LanguageChanged(Object sender, EventArgs e)
@@ -60,11 +59,6 @@ namespace CSVHandler.UI
                     App.Language = lang;
                 }
             }
-        }
-
-        private void MainWindow_Loaded(object sender, System.Windows.RoutedEventArgs e)
-        {
-            //Logger.LogInformation("MainWindow has loaded.");
         }
     }
 }

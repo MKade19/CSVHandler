@@ -2,7 +2,10 @@
 using CSVHandler.UI.Services.Abstract;
 using CSVHandler.UI.Util;
 using System.Collections.ObjectModel;
+using Microsoft.WindowsAPICodePack.Dialogs;
+using CSVHandler.UI.Views;
 using System.Windows;
+using System.Diagnostics;
 
 namespace CSVHandler.UI.ViewModels
 {
@@ -137,7 +140,7 @@ namespace CSVHandler.UI.ViewModels
             try
             {
                 AreDataLoading = true;
-                await GetPeopleFromDb();
+                await GetPeopleFromDbAsync();
                 IsTableShown = true;
             }
             finally
@@ -151,9 +154,35 @@ namespace CSVHandler.UI.ViewModels
             try
             {
                 AreDataLoading = true;
+
+                var dlg = new CommonOpenFileDialog();
+                dlg.Title = (string)Application.Current.FindResource("ChooseDirectoryDialog");
+                dlg.IsFolderPicker = true;
+                dlg.Multiselect = false;
+                string folderName = string.Empty;
+                string fileName = string.Empty;
+
+                if (dlg.ShowDialog() == CommonFileDialogResult.Ok)
+                {
+                    folderName = dlg.FileName ?? string.Empty;
+                }
+
+                var fileDialog = new XmlSaveDialogView();
+                if (fileDialog.ShowDialog() == true)
+                {
+                    fileName = fileDialog.XmlFilename;
+                }
+                else
+                {
+                    return;
+                }
+
+                string fullPath = folderName + '\\' + fileName + ".xml";
                 List<Person> people = new List<Person>(PeopleToExport);
-                await XmlService.SavePeopleToFileAsync(people, "D:\\people.xml");
-                MessageBoxStore.Information("Data were exported to xml!");
+
+                await XmlService.SavePeopleToFileAsync(people, fullPath);
+                MessageBoxStore.Information((string)Application.Current.FindResource("ExportToXmlResultYes"));
+                Process.Start("explorer.exe", folderName);
             }
             finally
             {
@@ -176,7 +205,7 @@ namespace CSVHandler.UI.ViewModels
 
         public void RefreshCommand_Executed(object obj)
         {
-            if (MessageBoxStore.Confirmation("Do you want to refresh the table?") == System.Windows.MessageBoxResult.No)
+            if (MessageBoxStore.Confirmation((string)Application.Current.FindResource("RefreshTableDialogCaption")) == System.Windows.MessageBoxResult.No)
             {
                 return;
             }
@@ -193,7 +222,7 @@ namespace CSVHandler.UI.ViewModels
             }
         }
 
-        private async Task GetPeopleFromDb()
+        private async Task GetPeopleFromDbAsync()
         {
             PeopleToExport.Clear();
 
