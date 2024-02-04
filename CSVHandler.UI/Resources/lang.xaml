@@ -1,0 +1,38 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:v="clr-namespace:System;assembly=mscorlib">
+    <!--MainWindow-->
+    <v:String x:Key="ApplicationTitle">CSV handler</v:String>
+    <v:String x:Key="ExportMenuItem">Export from DB</v:String>
+    <v:String x:Key="ParseCsvMenuItem">Parse CSV</v:String>
+    <v:String x:Key="ChangeLanguageMenuItem">Change language</v:String>
+    <!--SaveToDbView-->
+    <v:String x:Key="SaveToDbViewHeader">CSV parser</v:String>
+    <v:String x:Key="SelectInputFileLabel">Select input file</v:String>
+    <v:String x:Key="BrowseButtonCaption">Browse</v:String>
+    <v:String x:Key="TableIsEmptyMessage">Nothing selected. Choose csv file to parse...</v:String>
+    <!--ExportView-->
+    <v:String x:Key="ExportViewHeader">Export data</v:String>
+    <v:String x:Key="FilterDataHeader">Filter data to export</v:String>
+    <v:String x:Key="ExportGridHeader">Records for export</v:String>
+    <v:String x:Key="StartDateLabel">Start date</v:String>
+    <v:String x:Key="EndDateLabel">End date</v:String>
+    <v:String x:Key="FirstNameLabel">Firstname</v:String>
+    <v:String x:Key="MiddleNameLabel">Middlename</v:String>
+    <v:String x:Key="LastNameLabel">Lastname</v:String>
+    <v:String x:Key="TownLabel">Town</v:String>
+    <v:String x:Key="CountryLabel">Country</v:String>
+    <!--Buttons-->
+    <v:String x:Key="SaveToDBButtonCaption">Save to database</v:String>
+    <v:String x:Key="SubmitButtonCaption">Submit</v:String>
+    <v:String x:Key="RefreshButtonCaption">Refresh</v:String>
+    <v:String x:Key="ExportToXmlButtonCaption">Export to XML</v:String>
+    <v:String x:Key="ExportToExcelButtonCaption">Export to Excel</v:String>
+    <!--GridHeaders-->
+    <v:String x:Key="PublishDateGridHeader">Publish date</v:String>
+    <v:String x:Key="FirstnameGridHeader">Firstname</v:String>
+    <v:String x:Key="MiddlenameGridHeader">Middlename</v:String>
+    <v:String x:Key="LastnameGridHeader">Lastname</v:String>
+    <v:String x:Key="TownGridHeader">Town</v:String>
+    <v:String x:Key="CountryGridHeader">Country</v:String>
+</ResourceDictionary>

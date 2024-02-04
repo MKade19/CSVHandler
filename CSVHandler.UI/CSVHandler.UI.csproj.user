@@ -18,6 +18,12 @@
     <Page Update="MainWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="Resources\lang.ru-RU.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Resources\lang.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Views\SaveToDbView.xaml">
       <SubType>Designer</SubType>
     </Page>

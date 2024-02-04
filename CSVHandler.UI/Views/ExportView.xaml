@@ -19,61 +19,61 @@
             Width="890" 
             Height="700" 
             Grid.Row="1" VerticalAlignment="Center">
-            <TextBlock Text="Export data" 
+            <TextBlock Text="{DynamicResource ExportViewHeader}" 
                Margin="0,0,0,20"
                FontSize="36" 
                HorizontalAlignment="Center" 
                VerticalAlignment="Center"/>
             <StackPanel Visibility="{Binding IsTableShown, Converter={StaticResource BoolToCollapsedConverter}}" 
                         HorizontalAlignment="Center">
-                <TextBlock Text="Filter data to export" 
+                <TextBlock Text="{DynamicResource FilterDataHeader}" 
                    Margin="0,0,0,10"
                    FontSize="24" 
                    HorizontalAlignment="Center" 
                    VerticalAlignment="Center"/>
                 <StackPanel Margin="0,10,0,0" Orientation="Horizontal" HorizontalAlignment="Right">
-                    <Label Content="Start date" Target="{Binding ElementName=StartDatePicker}" FontSize="18"/>
+                    <Label Content="{DynamicResource StartDateLabel}" Target="{Binding ElementName=StartDatePicker}" FontSize="18"/>
                     <DatePicker x:Name="StartDatePicker" 
                                 SelectedDate="{Binding StartDate, UpdateSourceTrigger=LostFocus, Mode=TwoWay}" 
                                 Width="200" 
                                 FontSize="16"/>
                 </StackPanel>
                 <StackPanel Margin="0,10,0,0" Orientation="Horizontal" HorizontalAlignment="Right">
-                    <Label Content="End date" Target="{Binding ElementName=EndDatePicker}" FontSize="18"/>
+                    <Label Content="{DynamicResource EndDateLabel}" Target="{Binding ElementName=EndDatePicker}" FontSize="18"/>
                     <DatePicker x:Name="EndDatePicker" 
                                 SelectedDate="{Binding EndDate, UpdateSourceTrigger=LostFocus, Mode=TwoWay}" 
                                 Width="200" 
                                 FontSize="16"/>
                 </StackPanel>
                 <StackPanel Margin="0,10,0,0" Orientation="Horizontal" HorizontalAlignment="Right">
-                    <Label Content="First name" Target="{Binding ElementName=FirstNameBox}" FontSize="18"/>
+                    <Label Content="{DynamicResource FirstNameLabel}" Target="{Binding ElementName=FirstNameBox}" FontSize="18"/>
                     <TextBox x:Name="FirstNameBox" Text="{Binding FirstName, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Width="200" FontSize="16"/>
                 </StackPanel>
                 <StackPanel Margin="0,10,0,0" Orientation="Horizontal" HorizontalAlignment="Right">
-                    <Label Content="Middle name" Target="{Binding ElementName=MiddleNameBox}" FontSize="18"/>
+                    <Label Content="{DynamicResource MiddleNameLabel}" Target="{Binding ElementName=MiddleNameBox}" FontSize="18"/>
                     <TextBox x:Name="MiddleNameBox" Text="{Binding MiddleName, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Width="200" FontSize="16"/>
                 </StackPanel>
                 <StackPanel Margin="0,10,0,0" Orientation="Horizontal" HorizontalAlignment="Right">
-                    <Label Content="Last name" Target="{Binding ElementName=LastNameBox}" FontSize="18"/>
+                    <Label Content="{DynamicResource LastNameLabel}" Target="{Binding ElementName=LastNameBox}" FontSize="18"/>
                     <TextBox x:Name="LastNameBox" Text="{Binding LastName, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Width="200" FontSize="16"/>
                 </StackPanel>
                 <StackPanel Margin="0,10,0,0" Orientation="Horizontal" HorizontalAlignment="Right">
-                    <Label Content="Town" Target="{Binding ElementName=TownBox}" FontSize="18"/>
+                    <Label Content="{DynamicResource TownLabel}" Target="{Binding ElementName=TownBox}" FontSize="18"/>
                     <TextBox x:Name="TownBox" Text="{Binding Town, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Width="200" FontSize="16"/>
                 </StackPanel>
                 <StackPanel Margin="0,10,0,0" Orientation="Horizontal" HorizontalAlignment="Right">
-                    <Label Content="Country" Target="{Binding ElementName=CountryBox}" FontSize="18"/>
+                    <Label Content="{DynamicResource CountryLabel}" Target="{Binding ElementName=CountryBox}" FontSize="18"/>
                     <TextBox x:Name="CountryBox" Text="{Binding Country, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Width="200" FontSize="16"/>
                 </StackPanel>
                 <Button x:Name="SubmitFilterButton" 
-                    Content="Submit" 
+                    Content="{DynamicResource SubmitButtonCaption}" 
                     IsEnabled="{Binding Path=AreDataLoading, Converter={StaticResource InverseBooleanConverter}}"
                     Margin="0,20,20,0"
                     Command="{Binding GetFilteredDataCommand}"
                     FontSize="16" Height="36" Width="150"/>
             </StackPanel>
             <StackPanel Visibility="{Binding IsTableShown, Converter={StaticResource BoolToVisibleConverter}}">
-                <TextBlock Text="People to export" 
+                <TextBlock Text="{DynamicResource ExportGridHeader}" 
                    Margin="0,0,0,10"
                    FontSize="24" 
                    HorizontalAlignment="Center" 
@@ -84,27 +84,27 @@
                     ItemsSource="{Binding PeopleToExport}"
                     FontSize="16" HorizontalAlignment="Center" Width="678" Margin="0,10,0,0" Height="508">
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="Publish date" Binding="{Binding PublishDate, StringFormat=dd.MM.yyyy}"/>
-                        <DataGridTextColumn Header="Firstname" Binding="{Binding FirstName}"/>
-                        <DataGridTextColumn Header="Middlename" Binding="{Binding MiddleName}"/>
-                        <DataGridTextColumn Header="Lastname" Binding="{Binding LastName}"/>
-                        <DataGridTextColumn Header="Town" Binding="{Binding Town}"/>
-                        <DataGridTextColumn Header="Country" Binding="{Binding Country}"/>
+                        <DataGridTextColumn Header="{DynamicResource PublishDateGridHeader}" Binding="{Binding PublishDate, StringFormat=dd.MM.yyyy}"/>
+                        <DataGridTextColumn Header="{DynamicResource FirstnameGridHeader}" Binding="{Binding FirstName}"/>
+                        <DataGridTextColumn Header="{DynamicResource MiddlenameGridHeader}" Binding="{Binding MiddleName}"/>
+                        <DataGridTextColumn Header="{DynamicResource LastnameGridHeader}" Binding="{Binding LastName}"/>
+                        <DataGridTextColumn Header="{DynamicResource TownGridHeader}" Binding="{Binding Town}"/>
+                        <DataGridTextColumn Header="{DynamicResource CountryGridHeader}" Binding="{Binding Country}"/>
                     </DataGrid.Columns>
                 </DataGrid>
                 <StackPanel Orientation="Horizontal" Margin="0,20,0,0" HorizontalAlignment="Center">
                     <Button x:Name="ExportToXMLButton" 
-                        Content="Export to XML" 
+                        Content="{DynamicResource ExportToXmlButtonCaption}" 
                         Margin="0,0,20,0"
                         Command="{Binding ExportToXmlCommand}"
                         FontSize="16" Height="36" Width="150"/>
                     <Button x:Name="ExportToExcelButton" 
-                        Content="Export to Excel" 
+                        Content="{DynamicResource ExportToExcelButtonCaption}" 
                         Margin="0,0,20,0"
                         Command="{Binding ExportToExcelCommand}"
                         FontSize="16" Height="36" Width="160"/>
                     <Button x:Name="RefreshButton" 
-                        Content="Refresh" 
+                        Content="{DynamicResource RefreshButtonCaption}" 
                         Margin="0,0,20,0"
                         Command="{Binding RefreshCommand}"
                         FontSize="16" Height="36" Width="160"/>

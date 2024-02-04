@@ -1,0 +1,38 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"                
+                    xmlns:v="clr-namespace:System;assembly=mscorlib">
+    <!--MainWindow-->
+    <v:String x:Key="ApplicationTitle">CSV обработчик</v:String>
+    <v:String x:Key="ExportMenuItem">Экспорт из БД</v:String>
+    <v:String x:Key="ParseCsvMenuItem">Обработка CSV</v:String>
+    <v:String x:Key="ChangeLanguageMenuItem">Выбор языка</v:String>
+    <!--SaveToDbView-->
+    <v:String x:Key="CsvParserHeader">CSV парсер</v:String>
+    <v:String x:Key="SelectInputFileLabel">Выберите файл</v:String>
+    <v:String x:Key="BrowseButtonCaption">Обзор</v:String>
+    <v:String x:Key="TableIsEmptyMessage">Файл не выбран. Выберите CSV файл для парсинга...</v:String>
+    <!--ExportView-->
+    <v:String x:Key="ExportViewHeader">Экспорт данных</v:String>
+    <v:String x:Key="FilterDataHeader">Введите критерии для экспрорта</v:String>
+    <v:String x:Key="ExportGridHeader">Записи на экспорт</v:String>
+    <v:String x:Key="StartDateLabel">Мин дата</v:String>
+    <v:String x:Key="EndDateLabel">Макс дата</v:String>
+    <v:String x:Key="FirstNameLabel">Имя</v:String>
+    <v:String x:Key="MiddleNameLabel">Второе имя</v:String>
+    <v:String x:Key="LastNameLabel">Фамилия</v:String>
+    <v:String x:Key="TownLabel">Город</v:String>
+    <v:String x:Key="CountryLabel">Страна</v:String>
+    <!--Buttons-->
+    <v:String x:Key="SaveToDBButtonCaption">Сохранить в БД</v:String>
+    <v:String x:Key="SubmitButtonCaption">Отправить</v:String>
+    <v:String x:Key="RefreshButtonCaption">Сбросить</v:String>
+    <v:String x:Key="ExportToXmlButtonCaption">Экспорт в XML</v:String>
+    <v:String x:Key="ExportToExcelButtonCaption">Экспорт в Excel</v:String>
+    <!--GridHeaders-->
+    <v:String x:Key="PublishDateGridHeader">Дата публикации</v:String>
+    <v:String x:Key="FirstnameGridHeader">Имя</v:String>
+    <v:String x:Key="MiddlenameGridHeader">Второе имя</v:String>
+    <v:String x:Key="LastnameGridHeader">Фамилия</v:String>
+    <v:String x:Key="TownGridHeader">Город</v:String>
+    <v:String x:Key="CountryGridHeader">Страна</v:String>
+</ResourceDictionary>

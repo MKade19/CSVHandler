@@ -9,21 +9,27 @@
         xmlns:converters="clr-namespace:CSVHandler.UI.Converters"
         mc:Ignorable="d"
         d:DataContext="{d:DesignInstance viewModels:MainViewModel}"
-        Title="CSVHandler" Height="800" Width="1100">
+        Title="{DynamicResource ApplicationTitle}" Height="800" Width="1100">
     <Window.Resources>
         <converters:BoolToVisibleConverter x:Key="BoolToVisibleConverter"/>
         <converters:InverseBooleanConverter x:Key="InverseBooleanConverter"/>
     </Window.Resources>
 
     <Grid HorizontalAlignment="Center" Width="1080">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="7*"/>
+            <ColumnDefinition Width="4*"/>
+            <ColumnDefinition Width="349*"/>
+        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="0.05*"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <Menu Height="40" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="16">
-            <MenuItem Command="{Binding GoToParserCommand}" Header="Parse csv" Height="33" HorizontalAlignment="Left"/>
-            <MenuItem Command="{Binding GoToExportCommand}" Header="Export from db" Height="33" HorizontalAlignment="Left"/>
+        <Menu Height="40" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="16" Grid.ColumnSpan="3">
+            <MenuItem Command="{Binding GoToParserCommand}" Header="{DynamicResource ParseCsvMenuItem}" Height="33" HorizontalAlignment="Left"/>
+            <MenuItem Command="{Binding GoToExportCommand}" Header="{DynamicResource ExportMenuItem}" Height="33" HorizontalAlignment="Left"/>
+            <MenuItem x:Name="LanguageMenu" Header="{DynamicResource ChangeLanguageMenuItem}" Height="33" HorizontalAlignment="Left"/>
         </Menu>
-        <ContentControl Grid.Row="2" x:Name="ViewContainer" Content="{Binding ActiveView}"/>
+        <ContentControl x:Name="ViewContainer" Content="{Binding ActiveView}" Grid.ColumnSpan="3" Margin="0,37,0,0" Grid.RowSpan="2"/>
     </Grid>
 </mah:MetroWindow>
