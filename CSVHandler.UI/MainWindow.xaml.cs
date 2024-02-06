@@ -40,7 +40,6 @@ namespace CSVHandler.UI
         {
             CultureInfo currLang = App.Language;
 
-            //Отмечаем нужный пункт смены языка как выбранный язык
             foreach (MenuItem i in LanguageMenu.Items)
             {
                 CultureInfo ci = i.Tag as CultureInfo;

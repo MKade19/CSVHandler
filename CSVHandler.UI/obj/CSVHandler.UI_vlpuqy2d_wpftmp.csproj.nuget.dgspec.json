@@ -1,0 +1,88 @@
+{
+  "format": 1,
+  "restore": {
+    "D:\\My_documents\\practice\\c#\\CSVHandler\\CSVHandler\\CSVHandler.UI\\CSVHandler.UI.csproj": {}
+  },
+  "projects": {
+    "D:\\My_documents\\practice\\c#\\CSVHandler\\CSVHandler\\CSVHandler.UI\\CSVHandler.UI.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\My_documents\\practice\\c#\\CSVHandler\\CSVHandler\\CSVHandler.UI\\CSVHandler.UI.csproj",
+        "projectName": "CSVHandler.UI",
+        "projectPath": "D:\\My_documents\\practice\\c#\\CSVHandler\\CSVHandler\\CSVHandler.UI\\CSVHandler.UI.csproj",
+        "packagesPath": "C:\\Users\\Максим\\.nuget\\packages\\",
+        "outputPath": "D:\\My_documents\\practice\\c#\\CSVHandler\\CSVHandler\\CSVHandler.UI\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\Максим\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0-windows"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0-windows7.0": {
+            "targetAlias": "net6.0-windows",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0-windows7.0": {
+          "targetAlias": "net6.0-windows",
+          "dependencies": {
+            "FileHelpers": {
+              "target": "Package",
+              "version": "[3.5.2, )"
+            },
+            "MahApps.Metro": {
+              "target": "Package",
+              "version": "[2.4.10, )"
+            },
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[6.0.0, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[6.0.0, )"
+            },
+            "Z.EntityFramework.Extensions.EFCore": {
+              "target": "Package",
+              "version": "[6.101.2.1, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            },
+            "Microsoft.WindowsDesktop.App.WPF": {
+              "privateAssets": "none"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}
